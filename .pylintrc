@@ -2,3 +2,4 @@
 disable=
     C0114, # missing-module-docstring
     C0116, # missing-function-docstring
+    C0115, # missing-class-docstring
