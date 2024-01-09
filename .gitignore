@@ -1,6 +1,6 @@
 .env
 env/
-output/*.*
-input/*.*
+output/*.txt
+input/*.txt
 **/__pycache__/
 .vscode/
