@@ -21,7 +21,7 @@ def setup():
         for plugin_name, plugin in registry.items():
             print(f"\t{plugin_name} - {plugin.description()}")
         sys.exit(0)
-        
+
     if options.version:
         print(f"{config['name']} v{config['version']}")
         sys.exit(0)
