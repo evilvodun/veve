@@ -6,4 +6,6 @@
 ## A multiprotocol credentials bruteforcer
 
 Supported protocols
+
 - IMAP
+- SMTP
