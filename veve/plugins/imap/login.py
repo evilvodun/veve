@@ -1,7 +1,6 @@
 from imaplib import IMAP4_SSL
 import sys
 from veve.plugin import Plugin
-from veve.manager import Manager
 from veve.response import Response
 
 
