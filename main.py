@@ -2,7 +2,7 @@ import time
 import sys
 import toml
 from veve.log import Log
-from veve.plugins import Manager
+from veve.manager import Manager
 from veve.session import Session
 from veve import options as Options
 

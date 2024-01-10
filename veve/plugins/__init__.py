@@ -1,4 +1,5 @@
-from .plugin import Plugin
-from .manager import Manager
+from veve.manager import Manager
 
-from .imap import Login
+from veve.plugins.imap.login import Login
+
+Manager.register("imap.login", Login())

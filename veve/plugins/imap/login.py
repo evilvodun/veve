@@ -1,8 +1,8 @@
 from imaplib import IMAP4_SSL
 import sys
-from veve.plugins import Plugin
-from veve.plugins import Manager
-from veve import Response
+from veve.plugin import Plugin
+from veve.manager import Manager
+from veve.response import Response
 
 
 class Login(Plugin):
@@ -65,6 +65,3 @@ class Login(Plugin):
             return str(b).split('b\'')[1].split('\'')[0]
         except Exception:
             return str(b)
-
-
-Manager.register("imap.login", Login())

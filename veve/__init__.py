@@ -1,1 +1,1 @@
-from .response import Response
+import veve.plugins

@@ -1,5 +1,5 @@
 import argparse
-from veve.plugins.manager import Manager
+from veve.manager import Manager
 
 
 def options():
