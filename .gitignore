@@ -1,6 +1,7 @@
 .env
 env/
 output/*.txt
+output/*.jsonl
 input/*.txt
 **/__pycache__/
 .vscode/

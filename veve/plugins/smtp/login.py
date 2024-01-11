@@ -33,7 +33,10 @@ class Login(Plugin):
         server = self.args.server
 
         if self.args.server_included:
-            server, user, password = credentials.split(self.args.delimiter)
+            try:
+                server, user, password = credentials.split(self.args.delimiter)
+            except ValueError:
+                return Response.error(f'Invalid format: {credentials}'), ""
         else:
             user, password = credentials.split(self.args.delimiter)
 
@@ -59,11 +62,10 @@ class Login(Plugin):
 
     def __smtp_login(self, user, password, server):
         if self.args.ssl:
-            smtp_ssl = SMTP_SSL(server, self.SMTP_SSL_PORT)
-            smtp_ssl.set_debuglevel(self.args.debug_level)
-            smtp_ssl.ehlo()
-
             try:
+                smtp_ssl = SMTP_SSL(server, self.SMTP_SSL_PORT)
+                smtp_ssl.set_debuglevel(self.args.debug_level)
+                smtp_ssl.ehlo()
                 smtp_ssl.login(user, password)
                 smtp_ssl.quit()
                 return True
@@ -71,24 +73,22 @@ class Login(Plugin):
                 return e
 
         if self.args.tls:
-            smtp = SMTP(server, self.SMTP_TLS_PORT)
-            smtp.ehlo()
-            smtp.set_debuglevel(self.args.debug_level)
-            smtp.starttls()
-
             try:
+                smtp = SMTP(server, self.SMTP_TLS_PORT)
+                smtp.set_debuglevel(self.args.debug_level)
+                smtp.ehlo()
+                smtp.starttls()
                 smtp.login(user, password)
                 smtp.quit()
                 return True
             except Exception as e:
                 return e
 
-        smtp = SMTP(server, self.SMTP_PLAIN_PORT)
-        smtp.ehlo()
-
         try:
-            smtp.login(user, password)
+            smtp = SMTP(server, self.SMTP_PLAIN_PORT)
             smtp.set_debuglevel(self.args.debug_level)
+            smtp.ehlo()
+            smtp.login(user, password)
             smtp.quit()
             return True
         except Exception as e:
