@@ -9,6 +9,7 @@ class Manager:
     registry = {}
     tasks = Queue()
     plugin = None
+    targets = None
 
     def __init__(self, session):
         self.session = session
@@ -42,13 +43,13 @@ class Manager:
             if message == "timeout occured":
                 self.session.error(self.plugin_name, message)
 
-            elif result['status'] is True:
-                self.session.ok(self.plugin_name, result['message'])
+            self.session.append(self.plugin_name, result)
 
-            elif result['status'] is False:
-                self.session.error(self.plugin_name, result['message'])
 
     def __load_tasks(self, target):
         with open(target, 'r', encoding='utf-8') as fp:
-            for _, line in enumerate(fp.read().splitlines()):
+            lines = fp.read().splitlines()
+            self.targets = len(lines)
+
+            for _, line in enumerate(lines):
                 self.tasks.put_nowait(line)

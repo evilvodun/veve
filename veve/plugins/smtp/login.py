@@ -38,7 +38,10 @@ class Login(Plugin):
             except ValueError:
                 return Response.error(f'Invalid format: {credentials}'), ""
         else:
-            user, password = credentials.split(self.args.delimiter)
+            try:
+                user, password = credentials.split(self.args.delimiter)
+            except ValueError:
+                return Response.error(f'Invalid format: {credentials}'), ""
 
         server = server.strip()
         user = user.strip()

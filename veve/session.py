@@ -23,6 +23,12 @@ class Session:
 
         logging.info("using file -> %s", f'{self.options.target}\n')
 
+    def append(self, plugin, result):
+        if result['status'] is True:
+            self.ok(plugin, result['message'])
+        else:
+            self.error(plugin, result['message'])
+
     def ok(self, plugin, data):
         logging.info("%s - %s", plugin, data)
         self.save(plugin, data, "success")
