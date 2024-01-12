@@ -9,3 +9,4 @@ Supported protocols
 
 - IMAP
 - SMTP
+- POP3
