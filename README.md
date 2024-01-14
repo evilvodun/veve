@@ -10,3 +10,6 @@ Supported protocols
 - IMAP
 - SMTP
 - POP3
+
+Parser
+- parse files before bruteforce
