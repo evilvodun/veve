@@ -13,3 +13,6 @@ Supported protocols
 
 Parser
 - parse files before bruteforce
+
+Workflow
+- add yml workflow
