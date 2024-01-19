@@ -42,8 +42,8 @@ class Manager:
 
             if message == "timeout occured":
                 self.session.error(self.plugin_name, message)
-
-            self.session.append(self.plugin_name, result)
+            else:
+                self.session.append(self.plugin_name, result)
 
 
     def __load_tasks(self, target):

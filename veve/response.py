@@ -1,8 +1,8 @@
 class Response:
     @staticmethod
     def ok(data):
-        return {'status': True, 'message': data}
+        return {'status': 'success', 'message': data}
 
     @staticmethod
     def error(data):
-        return {'status': False, 'message': data}
+        return {'status': 'error', 'message': data}

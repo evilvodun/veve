@@ -24,7 +24,7 @@ class Session:
         logging.info("using file -> %s", f'{self.options.target}\n')
 
     def append(self, plugin, result):
-        if result['status'] is True:
+        if result.get('status') == 'success':
             self.ok(plugin, result['message'])
         else:
             self.error(plugin, result['message'])
