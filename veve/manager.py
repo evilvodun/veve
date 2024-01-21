@@ -47,9 +47,31 @@ class Manager:
 
 
     def __load_tasks(self, target):
-        with open(target, 'r', encoding='utf-8') as fp:
-            lines = fp.read().splitlines()
-            self.targets = len(lines)
+        if self.options.payloads:
+            payloads = self.__load_payloads(self.options.payloads)
+
+            lines = self.__load_targets(target)
+
+            # We suppose we have only one target
+            # TODO: Add support for multiple targets
+            for _, payload in enumerate(payloads):
+                self.tasks.put_nowait(f"{payload}#{lines[0]}")
+
+        else:
+            lines = self.__load_targets(target)
 
             for _, line in enumerate(lines):
                 self.tasks.put_nowait(line)
+
+    def __load_payloads(self, payloads) -> list:
+        with open(payloads, 'r', encoding='utf-8') as fp:
+            lines = fp.read().splitlines()
+
+        return lines
+
+    def __load_targets(self, targets) -> list:
+        with open(targets, 'r', encoding='utf-8') as fp:
+            lines = fp.read().splitlines()
+
+        return lines
+    

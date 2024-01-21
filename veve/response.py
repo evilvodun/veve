@@ -1,8 +1,8 @@
 class Response:
     @staticmethod
-    def ok(data):
+    def ok(data) -> dict:
         return {'status': 'success', 'message': data}
 
     @staticmethod
-    def error(data):
+    def error(data) -> dict:
         return {'status': 'error', 'message': data}
