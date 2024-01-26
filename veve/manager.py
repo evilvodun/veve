@@ -9,14 +9,13 @@ class Manager:
     registry = {}
     tasks = Queue()
     plugin = None
-    targets = None
 
     def __init__(self, session):
         self.session = session
         self.options = session.options
         self.plugin_name = self.options.plugin
 
-        self.__load_tasks(self.options.target)
+        self.__load_tasks()
 
     @staticmethod
     def register(plugin_name, plugin):
@@ -46,22 +45,17 @@ class Manager:
                 self.session.append(self.plugin_name, result)
 
 
-    def __load_tasks(self, target):
-        if self.options.payloads:
+    def __load_tasks(self,):
+        if self.options.single:
             payloads = self.__load_payloads(self.options.payloads)
 
-            lines = self.__load_targets(target)
-
-            # We suppose we have only one target
-            # TODO: Add support for multiple targets
             for _, payload in enumerate(payloads):
-                self.tasks.put_nowait(f"{payload}#{lines[0]}")
+                self.tasks.put_nowait(f"{payload}#{self.options.target}")
+        elif self.options.multiple:
+            targets = self.__load_targets(self.options.target)
 
-        else:
-            lines = self.__load_targets(target)
-
-            for _, line in enumerate(lines):
-                self.tasks.put_nowait(line)
+            for _, target in enumerate(targets):
+                self.tasks.put_nowait(target)
 
     def __load_payloads(self, payloads) -> list:
         with open(payloads, 'r', encoding='utf-8') as fp:

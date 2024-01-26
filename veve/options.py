@@ -7,6 +7,8 @@ def options():
     parent_parser.add_argument('--concurrency', help='Number of threads to use', required=False, default=10, type=int)
     parent_parser.add_argument('--output-format', help='Output format', required=False, default='txt')
     parent_parser.add_argument('--timeout', help='Timeout for each request', required=False, default=30, type=int)
+    parent_parser.add_argument('--single', help='Single target', required=False, default=False, action='store_true')
+    parent_parser.add_argument('--multiple', help='Multiple targets', required=False, default=False, action='store_true')
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--list-plugins", action="store_true", help="List all available plugins")
