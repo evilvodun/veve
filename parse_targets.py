@@ -30,7 +30,7 @@ def main():
     targets = get_targets(args.targets)
     parsed_targets = []
     wrong_targets = []
-    
+
     logging.info("Using delimiter: %s", args.delimiter)
     logging.info("Using length: %s", args.length)
 
