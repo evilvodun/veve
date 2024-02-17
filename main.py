@@ -39,7 +39,7 @@ def main():
     manager.setup()
 
     print(f"Running {opts.plugin} plugin...\n")
-    # print(f"Loaded Targets: {manager.targets}\n")
+    print(f"Loaded Targets: {manager.targets}\n")
 
     start = time.perf_counter()
 

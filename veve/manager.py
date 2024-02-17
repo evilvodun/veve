@@ -9,11 +9,13 @@ class Manager:
     registry = {}
     tasks = Queue()
     plugin = None
+    targets = None
 
     def __init__(self, session):
         self.session = session
         self.options = session.options
         self.plugin_name = self.options.plugin
+        self.targets = self.options.target
 
         self.__load_tasks()
 
@@ -46,11 +48,13 @@ class Manager:
 
 
     def __load_tasks(self,):
+        # TODO: refactor to handle without payloads
         if self.options.single:
             payloads = self.__load_payloads(self.options.payloads)
 
             for _, payload in enumerate(payloads):
                 self.tasks.put_nowait(f"{payload}#{self.options.target}")
+
         elif self.options.multiple:
             targets = self.__load_targets(self.options.target)
 
