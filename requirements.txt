@@ -13,7 +13,7 @@ platformdirs==4.1.0
 pycparser==2.21
 pylint==3.0.3
 PySocks==1.7.1
-requests==2.31.0
+requests==2.32.0
 toml==0.10.2
 tomlkit==0.12.3
 urllib3==2.1.0
