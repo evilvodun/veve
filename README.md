@@ -5,8 +5,15 @@
 
 ## A multiprotocol credentials bruteforcer
 
-Supported protocols
+`veve` is a multiprotocol credentials bruteforcer / password sprayer and enumerator built with Python.
 
+## Supported Protocols/Features:
+
+- HTTP
 - IMAP
-- SMTP
 - POP3
+- SMTP
+
+## License
+
+**veve** is distributed under the GPL-3.0 license. See [`LICENSE`](LICENSE) for more details.
