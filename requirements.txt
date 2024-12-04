@@ -16,6 +16,6 @@ PySocks==1.7.1
 requests==2.31.0
 toml==0.10.2
 tomlkit==0.12.3
-urllib3==2.1.0
+urllib3==2.2.2
 zope.event==5.0
 zope.interface==6.1
